@@ -38,6 +38,7 @@ while status :
         for key in resources.keys():
             print(f"|{key}:\t{resources[key]}|")
     elif action == "3":
+        print(f"Refunding {resources['current_balance']}")
         print("Turning the machine off")
         status = False
     else:
