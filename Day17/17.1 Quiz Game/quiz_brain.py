@@ -25,13 +25,20 @@ class QuizBrain:
             self.score += 1
             print("You got it right!")
 
+    def has_questions(self):
+        if self.question_number < len(self.question_bank):
+            return True
+        return False
 
     def game_loop(self):
-        while self.question_number < len(self.question_bank):
+        while self.has_questions():
             question = self.choose_question()
             self.check_answer(self.answer_question(question), question)
             print(f"Your score is: {self.score}/{self.question_number}")
             print(f"The correct answer was {question.answer}")
+        print("-------------------------------------")
+        print("You've completed the quiz!")
+        print(f"Your final score is {self.score}/{self.question_number}")
 
 
 
