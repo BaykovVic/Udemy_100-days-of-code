@@ -1,6 +1,7 @@
-from quiz_brain import QuizGame
+from quiz_brain import QuizBrain
 def main():
-    game = QuizGame()
+    game = QuizBrain()
+    game.game_loop()
 
 
 
