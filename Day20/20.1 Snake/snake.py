@@ -46,21 +46,15 @@ class Snake:
         if self.head.heading() != RIGHT:
             self.head.setheading(LEFT)
 
-    def add_segment(self):
+    def add_segment(self, position):
         new_segment = Turtle("square")
         new_segment.color("white")
         new_segment.penup()
-        if self.head.heading() == RIGHT:
-            new_segment.goto(self.tail.xcor() + SNAKE_BODY_OFFSET, self.tail.ycor())
-        elif self.head.heading() == LEFT:
-            new_segment.goto(self.tail.xcor() - SNAKE_BODY_OFFSET, self.tail.ycor())
-        elif self.head.heading() == UP:
-            new_segment.goto(self.tail.xcor(), self.tail.ycor() - SNAKE_BODY_OFFSET)
-        elif self.head.heading() == DOWN:
-            new_segment.goto(self.tail.xcor(), self.tail.ycor() + SNAKE_BODY_OFFSET)
+        new_segment.goto(position)
         self.segments.append(new_segment)
-        self.tail = self.segments[-1]
 
+    def extend(self):
+        self.add_segment(self.segments[-1].position())
 
 
 
