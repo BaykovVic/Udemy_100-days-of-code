@@ -11,6 +11,7 @@ class Snake:
         self.head_coordinates = head_coordinates
         self.init_snake_body()
         self.head = self.segments[0]
+        self.tail = self.segments[-1]
 
     def init_snake_body(self):
         self.segments = []
@@ -44,4 +45,24 @@ class Snake:
     def left(self):
         if self.head.heading() != RIGHT:
             self.head.setheading(LEFT)
+
+    def add_segment(self):
+        new_segment = Turtle("square")
+        new_segment.color("white")
+        new_segment.penup()
+        if self.head.heading() == RIGHT:
+            new_segment.goto(self.tail.xcor() + SNAKE_BODY_OFFSET, self.tail.ycor())
+        elif self.head.heading() == LEFT:
+            new_segment.goto(self.tail.xcor() - SNAKE_BODY_OFFSET, self.tail.ycor())
+        elif self.head.heading() == UP:
+            new_segment.goto(self.tail.xcor(), self.tail.ycor() - SNAKE_BODY_OFFSET)
+        elif self.head.heading() == DOWN:
+            new_segment.goto(self.tail.xcor(), self.tail.ycor() + SNAKE_BODY_OFFSET)
+        self.segments.append(new_segment)
+        self.tail = self.segments[-1]
+
+
+
+
+
 
