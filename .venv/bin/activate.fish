@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/Users/victor/Programming/Python/Lessons/Udemy_100-days-of-code/.venv"
+set -gx VIRTUAL_ENV "/home/victor/Programming/Python/Lessons/Udemy_100-days-of-code/.venv"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH
