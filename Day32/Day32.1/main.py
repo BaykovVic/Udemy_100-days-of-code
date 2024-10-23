@@ -2,7 +2,7 @@ import smtplib
 
 my_email = "<YOUR SENDER EMAIL HERE>"
 
-# You can generate app password using your email provider
+# You can generate app password using y
 my_password = "<YOUR PASSWORD HERE>"
 
 to_email = "<YOUR DESTINATION EMAIL HERE>"
