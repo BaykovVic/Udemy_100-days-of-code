@@ -17,6 +17,7 @@ def generate_password():
     password_symbols = [random.choice(symbols) for _ in range(nr_symbols)]
     password_list = password_letters + password_numbers + password_symbols
     random.shuffle(password_list)
+    password_input.delete(0, tkinter.END)
     password= "".join(password_list)
     password_input.insert(0, password)
 
@@ -53,8 +54,25 @@ def save_password():
 
 
 # ---------------------------- SEARCH  ------------------------------- #
-def search():
-    pass
+def search() -> bool:
+    try:
+        with open("data.json", "r") as data_file:
+            # json.dump(new_data, data_file, indent=4)
+            data = json.load(data_file)
+    except FileNotFoundError:
+        messagebox.showerror("Oops!", "No file found")
+    else:
+        print(data)
+        for key, value in data.items():
+            if key == website_input.get():
+                email_input.delete(0, tkinter.END)
+                email_input.insert(0, value["email"])
+                password_input.delete(0, tkinter.END)
+                password_input.insert(0, value["password"])
+                messagebox.showerror(f"{key}", f"Email: {value['email']}\nPassword: {value['password']}")
+                return True
+    return False
+
 # ---------------------------- UI SETUP ------------------------------- #
 window = tkinter.Tk()
 window.title("Password Manager")
