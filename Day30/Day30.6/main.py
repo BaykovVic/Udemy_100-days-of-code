@@ -70,6 +70,9 @@ def search() -> bool:
             #password_input.insert(0, data[website]["password"])
             messagebox.showerror(f"{website}", f"Email: {data[website]['email']}\nPassword: {data[website]['password']}")
             return True
+        else:
+            messagebox.showerror("Oops!", f"No details for {website} found")
+
     return False
 
 # ---------------------------- UI SETUP ------------------------------- #
