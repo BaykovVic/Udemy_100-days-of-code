@@ -55,6 +55,7 @@ def save_password():
 
 # ---------------------------- SEARCH  ------------------------------- #
 def search() -> bool:
+    website = website_input.get()
     try:
         with open("data.json", "r") as data_file:
             # json.dump(new_data, data_file, indent=4)
@@ -62,15 +63,13 @@ def search() -> bool:
     except FileNotFoundError:
         messagebox.showerror("Oops!", "No file found")
     else:
-        print(data)
-        for key, value in data.items():
-            if key == website_input.get():
-                email_input.delete(0, tkinter.END)
-                email_input.insert(0, value["email"])
-                password_input.delete(0, tkinter.END)
-                password_input.insert(0, value["password"])
-                messagebox.showerror(f"{key}", f"Email: {value['email']}\nPassword: {value['password']}")
-                return True
+        if website in data:
+            #email_input.delete(0, tkinter.END)
+            #email_input.insert(0, data[website]["email"])
+            #password_input.delete(0, tkinter.END)
+            #password_input.insert(0, data[website]["password"])
+            messagebox.showerror(f"{website}", f"Email: {data[website]['email']}\nPassword: {data[website]['password']}")
+            return True
     return False
 
 # ---------------------------- UI SETUP ------------------------------- #
