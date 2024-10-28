@@ -1,3 +1,4 @@
+import time
 from tkinter import *
 from quiz_brain import QuizBrain
 THEME_COLOR = "#375362"
@@ -32,11 +33,30 @@ class QuizInterface:
         self.window.mainloop()
 
     def answer_true(self):
-        pass
+        is_right = self.quiz.check_answer("True")
+        self.give_feedback(is_right)
+        self.score_label.config(text=f"Score: {self.quiz.score}")
 
     def answer_false(self):
-        pass
+       is_right = self.quiz.check_answer("False")
+       self.give_feedback(is_right)
+       self.score_label.config(text=f"Score: {self.quiz.score}")
 
     def get_next_question(self):
-        q_text = self.quiz.next_question()
-        self.canvas.itemconfig(self.question_text, text=q_text)
+        self.canvas.config(bg="white")
+        if self.quiz.still_has_questions():
+            q_text = self.quiz.next_question()
+            self.canvas.itemconfig(self.question_text, text=q_text)
+        else:
+            self.canvas.itemconfig(self.question_text, text="You've reached the end of the quiz")
+            self.button_true.config(state="disabled")
+            self.button_false.config(state="disabled")
+
+    def give_feedback(self, is_right):
+        if is_right:
+            self.canvas.config(bg="green")
+        else:
+            self.canvas.config(bg="red")
+        self.window.after(500, self.get_next_question)
+
+
